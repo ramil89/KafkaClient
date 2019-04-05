@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/KafkaClient/bin/Debug/netcoreapp2.2
+/KafkaClient/obj
+/.vs/KafkaClient/v15

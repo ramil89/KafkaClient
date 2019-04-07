@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KafkaClient
 {
-    public class ValueSerializer<TValue> : ISerializer<TValue> where TValue : class
+    public class ValueJsonSerializer<TValue> : ISerializer<TValue> where TValue : class
     {
         public byte[] Serialize(TValue data, SerializationContext context)
         {

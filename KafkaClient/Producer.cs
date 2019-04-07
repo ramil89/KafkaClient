@@ -22,7 +22,7 @@ namespace KafkaClient
             // If serializers are not specified, default serializers from
             // `Confluent.Kafka.Serializers` will be automatically used where
             // available. Note: by default strings are encoded as UTF8.
-            using (var producer = new ProducerBuilder<TKey, TValue>(_producerConfig).SetValueSerializer(new ValueSerializer<TValue>()).Build())
+            using (var producer = new ProducerBuilder<TKey, TValue>(_producerConfig).SetValueSerializer(new ValueJsonSerializer<TValue>()).Build())
             {
                 try
                 {

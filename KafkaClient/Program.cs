@@ -1,35 +1,38 @@
 ﻿using Confluent.Kafka;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KafkaClient 
+namespace KafkaClient
 {
     class Program
     {
         static async Task Main(string[] args)
         {
-            string topicName = "order_create2";
+            string topicName = "order_create3";
 
-            var config = new ProducerConfig
-            {
-                BootstrapServers = "localhost:29092",
-                MessageTimeoutMs = 10000,
-            };
-
-            await ProduceDataAsync(topicName, config);
-
-            //var consumerConfig = new ConsumerConfig
+            //var config = new ProducerConfig
             //{
             //    BootstrapServers = "localhost:29092",
-            //    GroupId = "group-C",
-            //    EnableAutoOffsetStore  = false,
-            //    AutoOffsetReset = AutoOffsetReset.Earliest
+            //    MessageTimeoutMs = 10000,
             //};
 
-            //ConsumeData(topicName, consumerConfig);
+            //await ProduceDataAsync(topicName, config);
+
+            var consumerConfig = new ConsumerConfig
+            {
+                BootstrapServers = "localhost:29092",
+                GroupId = "group-F",
+                EnableAutoOffsetStore = false,
+                AutoOffsetReset = AutoOffsetReset.Earliest
+            };
+
+            ConsumeData(topicName, consumerConfig);
+
+
         }
 
         static async Task ProduceDataAsync(string topicName, ProducerConfig config)
@@ -50,9 +53,10 @@ namespace KafkaClient
 
         static void ConsumeData(string topicName, ConsumerConfig config)
         {
-            Consumer<Customer> consumer = new Consumer<Customer>(config);
-
+            Consumer<string, Customer> consumer = new Consumer<string, Customer>(config, 3000);
             consumer.Consume(topicName);
+
+            var value = consumer.GetValue("636902520212945872");
         }
     }
 

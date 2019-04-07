@@ -54,7 +54,7 @@ namespace KafkaClient
         static void ConsumeData(string topicName, ConsumerConfig config)
         {
             Consumer<string, Customer> consumer = new Consumer<string, Customer>(config, 3000);
-            consumer.Consume(topicName);
+            consumer.StartConsume(topicName);
 
             var value = consumer.GetValue("636902520212945872");
         }

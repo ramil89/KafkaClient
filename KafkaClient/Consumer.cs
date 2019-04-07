@@ -27,7 +27,7 @@ namespace KafkaClient
             _pollingTimeout = pollingTimeout;
         }
 
-        public Task Consume(string topic)
+        public Task StartConsume(string topic)
         {
             if (_consuming)
             {
@@ -79,25 +79,19 @@ namespace KafkaClient
         {
             TValue value = null;
 
-            if (_messages.ContainsKey(key))
+            // waiting for 3 seconds
+            int intervalCount = 0;
+            int pollingInterval = 100;
+
+            while (intervalCount < _pollingTimeout)
             {
                 if (_messages.TryRemove(key, out value))
                     return value;
-            }
-            else
-            {
-                // waiting for 3 seconds
-                int intervalCount = 0;
-                int pollingInterval = 500;
 
-                while (intervalCount < _pollingTimeout)
-                {
-                    if (_messages.TryRemove(key, out value))
-                        return value;
+                intervalCount += pollingInterval;
+                Thread.Sleep(pollingInterval);
 
-                    intervalCount += pollingInterval;
-                    Thread.Sleep(pollingInterval);
-                }
+                Console.WriteLine(intervalCount);
             }
 
             return value;

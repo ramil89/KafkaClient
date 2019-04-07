@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaClient", "KafkaClient\KafkaClient.csproj", "{3C63B2BF-175E-4F54-B5D7-58C607F558D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaClient", "KafkaClient\KafkaClient.csproj", "{3C63B2BF-175E-4F54-B5D7-58C607F558D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaClient.Tests", "KafkaClient.Tests\KafkaClient.Tests.csproj", "{B8420C15-F280-4CCD-AE1B-49C024B5EBA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3C63B2BF-175E-4F54-B5D7-58C607F558D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C63B2BF-175E-4F54-B5D7-58C607F558D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C63B2BF-175E-4F54-B5D7-58C607F558D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8420C15-F280-4CCD-AE1B-49C024B5EBA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8420C15-F280-4CCD-AE1B-49C024B5EBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8420C15-F280-4CCD-AE1B-49C024B5EBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8420C15-F280-4CCD-AE1B-49C024B5EBA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

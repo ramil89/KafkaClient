@@ -33,7 +33,7 @@ namespace KafkaClient.Tests
                 EnableAutoOffsetStore = false,
                 AutoOffsetReset = AutoOffsetReset.Earliest
             }, 
-            4000);
+            200);
 
             #endregion 
 
@@ -52,9 +52,11 @@ namespace KafkaClient.Tests
                 }
             };
 
-            var produceResult = await producer.ProduceAsync(topicName, key, order);
-
             consumer.StartConsume(topicName);
+
+            System.Threading.Thread.Sleep(2000);
+
+            var produceResult = await producer.ProduceAsync(topicName, key, order);
 
             TestOrder value = consumer.GetValue(key);
 

@@ -8,3 +8,4 @@
 /.vs/KafkaClient/lut
 /KafkaClient.Tests/bin/Debug/netcoreapp2.2
 /KafkaClient.Tests/obj
+/KafkaClient/bin/Release

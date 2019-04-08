@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using KafkaClient.Events;
 using KafkaClient.Exceptions;
 using System;
 using System.Collections.Concurrent;
@@ -18,6 +19,8 @@ namespace KafkaClient
         private bool _consuming;
 
         private readonly int _pollingTimeout;
+
+        public event EventHandler<MessageConsumedEventArgs<TValue>> OnMessageConsumed;
 
         public Consumer(ConsumerConfig config, int pollingTimeout)
         {
@@ -56,7 +59,11 @@ namespace KafkaClient
                             try
                             {
                                 var consumeResult = builder.Consume(cts.Token);
-                                _messages.TryAdd(consumeResult.Key, consumeResult.Value);
+                                if( _messages.TryAdd(consumeResult.Key, consumeResult.Value) 
+                                    && OnMessageConsumed != null)
+                                {
+                                    OnMessageConsumed(this, new MessageConsumedEventArgs<TValue>(consumeResult.Value));
+                                }
 
                                 Console.WriteLine($"Consumed message '{consumeResult.Key}' at: '{consumeResult.TopicPartitionOffset}'.");
                             }
